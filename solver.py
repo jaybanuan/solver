@@ -81,9 +81,12 @@ def solve(table):
                             continue
 
                         if is_movable(current_table[src_index], current_table[dst_index]):
-                            next_table = copy.deepcopy(current_table)
-                            move(next_table[src_index], next_table[dst_index])
+                            next_table = copy.copy(current_table)
+                            next_table[src_index] = copy.copy(current_table[src_index])
+                            next_table[dst_index] = copy.copy(current_table[dst_index])
 
+                            move(next_table[src_index], next_table[dst_index])
+                            
                             if not next_table in current_path:
                                 push(current_path, next_table)
                                 search_shortest_path()
